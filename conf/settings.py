@@ -38,7 +38,11 @@ if not DEBUG:
 
 # Host & proxy settings
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://*.bearblog.dev', 'https://bearblog.dev']
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.bearblog.dev', 'https://bearblog.dev',  # Keep for backward compatibility
+    f'https://*.{os.getenv("MAIN_DOMAIN", "yourdomain.com")}', 
+    f'https://{os.getenv("MAIN_DOMAIN", "yourdomain.com")}'
+]
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 
@@ -198,14 +202,14 @@ LOGIN_REDIRECT_URL = '/dashboard/'
 
 # Emailer
 
-DEFAULT_FROM_EMAIL = "ʕ•ᴥ•ʔ Bear Blog <noreply@bearblog.dev>"
-SERVER_EMAIL = "ʕ•ᴥ•ʔ Bear Admin <noreply@bearblog.dev>"
+DEFAULT_FROM_EMAIL = f"ʕ•ᴥ•ʔ Bear Blog <noreply@{os.getenv('MAIN_DOMAIN', 'yourdomain.com')}>"
+SERVER_EMAIL = f"ʕ•ᴥ•ʔ Bear Admin <noreply@{os.getenv('MAIN_DOMAIN', 'yourdomain.com')}>"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.eu.mailgun.org'
-EMAIL_HOST_USER = 'postmaster@mg.bearblog.dev'
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.eu.mailgun.org')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'postmaster@mg.bearblog.dev')
 EMAIL_HOST_PASSWORD = os.getenv('MAILGUN_PASSWORD', False)
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587'))
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True').lower() == 'true'
 
 # Referrer policy
 SECURE_REFERRER_POLICY = "origin-when-cross-origin"

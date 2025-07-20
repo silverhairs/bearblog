@@ -23,6 +23,9 @@ from blogs.models import Post
 
 
 def is_protected(subdomain):
+    # Get main domain from environment
+    main_domain = os.getenv('MAIN_DOMAIN', 'bearblog.dev')
+    
     protected_subdomains = [
         'login',
         'mg',
@@ -59,10 +62,16 @@ def is_protected(subdomain):
         'auth',
         'status',
         'assets',
+        # Legacy bearblog.dev domains
         'bearblog.dev',
         '*.bearblog.dev',
         'router.bearblog.dev',
         'www.bearblog.dev',
+        # New domain
+        main_domain,
+        f'*.{main_domain}',
+        f'router.{main_domain}',
+        f'www.{main_domain}',
         '_dmarc',
         'domain-proxy'
     ]

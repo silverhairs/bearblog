@@ -67,8 +67,14 @@ Required environment variables in `.env`:
 - `POSTGRES_PASSWORD`: PostgreSQL password
 - `POSTGRES_HOST`: PostgreSQL host
 - `POSTGRES_PORT`: PostgreSQL port
+- `MAIN_DOMAIN`: Your main domain (e.g., yourdomain.com)
+- `MAIN_SITE_HOSTS`: Comma-separated list of main site hosts
 - `MAILGUN_PASSWORD`: Mailgun SMTP password
 - `ADMIN_EMAIL`: Admin email address
+- `EMAIL_HOST`: SMTP host
+- `EMAIL_HOST_USER`: SMTP username
+- `EMAIL_PORT`: SMTP port
+- `EMAIL_USE_TLS`: Use TLS for email (True/False)
 
 Optional:
 - `SENTRY_DSN`: Sentry error tracking
