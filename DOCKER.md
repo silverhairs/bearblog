@@ -62,7 +62,11 @@ If you prefer to set up manually:
 Required environment variables in `.env`:
 
 - `SECRET`: Django secret key
+- `POSTGRES_DB`: PostgreSQL database name
+- `POSTGRES_USER`: PostgreSQL username
 - `POSTGRES_PASSWORD`: PostgreSQL password
+- `POSTGRES_HOST`: PostgreSQL host
+- `POSTGRES_PORT`: PostgreSQL port
 - `MAILGUN_PASSWORD`: Mailgun SMTP password
 - `ADMIN_EMAIL`: Admin email address
 
